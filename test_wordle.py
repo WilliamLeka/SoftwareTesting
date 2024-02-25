@@ -31,4 +31,4 @@ class TestWordle(unittest.TestCase):
         self.assertTrue(5, len(result))
         first_letter = result[0]
         self.assertEqual("g", first_letter.letter)
-        self.assertIsNotNone(first_letter.color)
+        self.assertIsNotNone(first_letter.colour)

@@ -20,16 +20,27 @@ class Wordle:
         if guessValid == False:
             raise ValueError(Guessword + " is not a valid word")
 
+        letters = self.checkLetters(Guessword)
+
         if Guessword.lower() == self.word.lower():
-            return True
+            return letters
         else:
             self.guesses -= 1
             if self.guesses == 0:
                 self.game_over = True
-            return False
+            return letters
 
-    def checkLetters(self, Guessword: str, pos: int):
-        for letter in range(0,len(self.word)):
-            if self.word[letter] == Guessword[pos]:
+    def checkLetters(self, Guessword : str):
+        results = []
+        for i in range(len(self.word)):
+            guessed_letter = Guessword[i]
+            actual_letter = self.word[i]
 
+            if guessed_letter == actual_letter:
+                results.append(letter_result.LetterResult(guessed_letter, "green"))
+            elif guessed_letter in self.word:
+                results.append(letter_result.LetterResult(guessed_letter, "yellow"))
+            else:
+                results.append(letter_result.LetterResult(guessed_letter, "grey"))
+        return results
 
